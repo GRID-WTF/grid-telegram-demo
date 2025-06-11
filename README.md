@@ -1,6 +1,6 @@
-# Open Source Telegram Integration
+# GRID.WTF Telegram Demo
 
-This is a sanitized, open-source version of a Telegram integration built with Next.js and TelegramJS. It includes authentication functionality but excludes sensitive data access routes.
+Full working version can be found here: [https://grid.wtf](https://grid.wtf)
 
 ## What's Included
 

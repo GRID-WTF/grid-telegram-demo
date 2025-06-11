@@ -1,0 +1,182 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  touch-action: pan-y;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+  }
+}
+
+/* L-shaped resize handles that wrap around container corners */
+.resize-handle-l-shaped {
+  position: relative;
+  overflow: visible;
+}
+
+/* Top-left handle (default L-shape) */
+.resize-handle-l-shaped.react-flow__resize-handle-top-left {
+  clip-path: polygon(0% 0%, 35% 0%, 35% 35%, 100% 35%, 100% 100%, 0% 100%);
+}
+
+/* Top-right handle (rotated 90deg clockwise) */
+.resize-handle-l-shaped.react-flow__resize-handle-top-right {
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 65% 100%, 65% 35%, 0% 35%);
+}
+
+/* Bottom-right handle (rotated 180deg) */
+.resize-handle-l-shaped.react-flow__resize-handle-bottom-right {
+  clip-path: polygon(0% 35%, 65% 35%, 65% 0%, 100% 0%, 100% 100%, 0% 100%);
+}
+
+/* Bottom-left handle (rotated 270deg clockwise) */
+.resize-handle-l-shaped.react-flow__resize-handle-bottom-left {
+  clip-path: polygon(0% 0%, 100% 0%, 100% 65%, 35% 65%, 35% 100%, 0% 100%);
+}
+
+/* Fake scrollbar - always visible on the right side */
+.fake-scrollbar {
+  position: relative;
+}
+
+.fake-scrollbar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 8px;
+  height: 100%;
+  background: linear-gradient(to bottom, 
+    rgba(156, 163, 175, 0.1) 0%,
+    rgba(156, 163, 175, 0.2) 20%,
+    rgba(156, 163, 175, 0.3) 50%,
+    rgba(156, 163, 175, 0.2) 80%,
+    rgba(156, 163, 175, 0.1) 100%
+  );
+  border-radius: 4px;
+  pointer-events: none;
+  z-index: 10;
+  opacity: 0.6;
+  transition: opacity 0.2s ease;
+}
+
+.fake-scrollbar:hover::after {
+  opacity: 0.8;
+}
+
+/* Dark theme variant */
+.dark .fake-scrollbar::after {
+  background: linear-gradient(to bottom, 
+    rgba(75, 85, 99, 0.2) 0%,
+    rgba(75, 85, 99, 0.4) 20%,
+    rgba(75, 85, 99, 0.6) 50%,
+    rgba(75, 85, 99, 0.4) 80%,
+    rgba(75, 85, 99, 0.2) 100%
+  );
+}
+
+/* Scrollbar thumb simulation - moves based on scroll position */
+.fake-scrollbar-with-thumb {
+  position: relative;
+}
+
+.fake-scrollbar-with-thumb::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 8px;
+  height: 100%;
+  background: rgba(156, 163, 175, 0.1);
+  border-radius: 4px;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.fake-scrollbar-with-thumb::after {
+  content: '';
+  position: absolute;
+  top: 8px;
+  right: 1px;
+  width: 6px;
+  height: 30%;
+  background: linear-gradient(to bottom, 
+    rgba(99, 102, 241, 0.6),
+    rgba(59, 130, 246, 0.6)
+  );
+  border-radius: 3px;
+  pointer-events: none;
+  z-index: 11;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.fake-scrollbar-with-thumb:hover::after {
+  background: linear-gradient(to bottom, 
+    rgba(99, 102, 241, 0.8),
+    rgba(59, 130, 246, 0.8)
+  );
+  width: 7px;
+  right: 0.5px;
+}
+
+/* Dark theme variant for thumb */
+.dark .fake-scrollbar-with-thumb::before {
+  background: rgba(75, 85, 99, 0.2);
+}
+
+.dark .fake-scrollbar-with-thumb::after {
+  background: linear-gradient(to bottom, 
+    rgba(99, 102, 241, 0.7),
+    rgba(59, 130, 246, 0.7)
+  );
+}
+
+.dark .fake-scrollbar-with-thumb:hover::after {
+  background: linear-gradient(to bottom, 
+    rgba(99, 102, 241, 0.9),
+    rgba(59, 130, 246, 0.9)
+  );
+}
+
+/* Alternative minimal scrollbar */
+.fake-scrollbar-minimal {
+  position: relative;
+}
+
+.fake-scrollbar-minimal::after {
+  content: '';
+  position: absolute;
+  top: 4px;
+  right: 2px;
+  bottom: 4px;
+  width: 4px;
+  background: rgba(156, 163, 175, 0.3);
+  border-radius: 2px;
+  pointer-events: none;
+  z-index: 10;
+  transition: all 0.2s ease;
+}
+
+.fake-scrollbar-minimal:hover::after {
+  background: rgba(156, 163, 175, 0.5);
+  width: 6px;
+  right: 1px;
+}
+
+.dark .fake-scrollbar-minimal::after {
+  background: rgba(75, 85, 99, 0.4);
+}
+
+.dark .fake-scrollbar-minimal:hover::after {
+  background: rgba(75, 85, 99, 0.6);
+}
